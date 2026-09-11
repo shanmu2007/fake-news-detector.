@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detector</title>
+
+    <link rel="stylesheet" href="{% static 'detector/style.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Fake News Detector</h1>
+
+        <p class="description">
+            Enter a news article below to check whether it is real or fake.
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <textarea
+                name="news"
+                placeholder="Enter or paste the news article here..."
+                required></textarea>
+
+            <br>
+
+            <button type="submit">Check News</button>
+            <button type="reset">Clear</button>
+        </form>
+
+       <div class="result">
+    <h2>Result</h2>
+
+    {% if result %}
+        <p class="result-text">{{ result }}</p>
+    {% else %}
+        <p class="result-text">Your result will appear here.</p>
+    {% endif %}
+</div>
+
+    </div>
+
+</body>
+</html>
